@@ -909,7 +909,6 @@ a:hover {
 
 .faq-item.active .faq-answer {
     padding-bottom: 1.5rem;
-    /* Ajuste o padding para a transição */
 }
 
 /* ================================== */
@@ -933,12 +932,10 @@ a:hover {
 .contact-wrapper {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    /* Removido o gap para um visual mais integrado */
     background: var(--white-color);
     border-radius: var(--border-radius-main);
     box-shadow: 0 20px 60px var(--shadow-medium);
     overflow: hidden;
-    /* Garante que o border-radius seja aplicado aos filhos */
 }
 
 .contact-form-container {
@@ -1009,7 +1006,6 @@ a:hover {
 .contact-form .btn-primary {
     width: 100%;
     justify-content: center;
-    /* Centraliza o texto e ícone no botão */
     font-size: 1.1rem;
     padding: 1rem;
 }
@@ -1018,8 +1014,6 @@ a:hover {
     transform: translateX(5px) rotate(-15deg);
 }
 
-
-/* Novo estilo para o painel de informações diretas */
 .contact-details-container {
     background: var(--primary-color);
     color: rgba(255, 255, 255, 0.85);
@@ -1133,10 +1127,10 @@ a:hover {
     }
 }
 
-
 /* ================================== */
 /* === FOOTER === */
 /* ================================== */
+
 .site-footer {
     background-color: var(--dark-bg);
     color: rgba(255, 255, 255, 0.7);
@@ -1202,6 +1196,7 @@ a:hover {
 /* ================================== */
 /* === BOTÕES FLUTUANTES E MODAL === */
 /* ================================== */
+
 .back-to-top {
     position: fixed;
     bottom: 25px;
@@ -1441,10 +1436,10 @@ a:hover {
     margin-bottom: 0;
 }
 
-
 /* ================================== */
 /* === MEDIA QUERIES - RESPONSIVO === */
 /* ================================== */
+
 @media (max-width: 992px) {
     .journey-grid::before {
         display: none;
@@ -1479,8 +1474,6 @@ a:hover {
 }
 
 @media (max-width: 768px) {
-
-    /* Esconde o menu desktop e mostra o hamburger */
     .nav-menu-desktop {
         display: none;
     }

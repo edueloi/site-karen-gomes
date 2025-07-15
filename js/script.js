@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Inicializa a biblioteca AOS para animações de rolagem
   AOS.init({
     duration: 800,
     once: true,
@@ -38,7 +37,6 @@ document.addEventListener("DOMContentLoaded", () => {
     navToggle.addEventListener("click", openMenu);
     navClose.addEventListener("click", closeMenu);
 
-    // Fecha o menu ao clicar em um link
     navLinks.forEach((link) => {
       link.addEventListener("click", closeMenu);
     });
@@ -62,7 +60,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // === Carrossel de Depoimentos com Swiper.js ===
-  // Apenas inicializa o Swiper, pois o HTML já está na página
   new Swiper(".testimonial-swiper-container", {
     loop: true,
     grabCursor: true,
@@ -73,8 +70,6 @@ document.addEventListener("DOMContentLoaded", () => {
     pagination: { el: ".swiper-pagination", clickable: true },
   });
 
-  // === Acordeão de Perguntas Frequentes (FAQ) ===
-  // Apenas adiciona a funcionalidade de clique, pois o HTML já está na página
   // === Acordeão de Perguntas Frequentes (FAQ) ===
   document.querySelectorAll(".faq-question").forEach((button) => {
     button.addEventListener("click", () => {
@@ -107,62 +102,48 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // === Formulário de Contato ===
-  // Apenas adiciona a funcionalidade de envio, pois o HTML já está na página
-  // js/script.js
-
   // === Formulário de Contato com Backend PHP ===
   const contactForm = document.getElementById("contact-form");
   const formMessage = document.getElementById("form-message");
 
   if (contactForm) {
     contactForm.addEventListener("submit", function (event) {
-      // Previne o envio padrão do formulário, pois vamos usar Fetch
       event.preventDefault();
 
-      // Pega o botão de submit para desativá-lo durante o envio
       const submitButton = contactForm.querySelector('button[type="submit"]');
-
-      // Adiciona a data e hora ao campo escondido
       const dataHoraAtual = new Date().toLocaleString("pt-BR", {
         timeZone: "America/Sao_Paulo",
       });
       document.getElementById("hora_envio").value = dataHoraAtual;
 
-      // Cria um objeto FormData com os dados do formulário
       const formData = new FormData(contactForm);
 
-      // Feedback visual para o usuário
       formMessage.textContent = "Enviando sua mensagem...";
       formMessage.className = "form-message"; // Estilo padrão
       submitButton.disabled = true;
       submitButton.innerHTML = "Enviando...";
 
-      // Envia os dados para o script PHP usando Fetch
       fetch("enviar_email.php", {
         method: "POST",
         body: formData,
       })
-        .then((response) => response.json()) // Converte a resposta do PHP para JSON
+        .then((response) => response.json())
         .then((data) => {
-          // Verifica o status retornado pelo PHP
           if (data.status === "success") {
             formMessage.textContent = data.message;
             formMessage.className = "form-message success";
-            contactForm.reset(); // Limpa o formulário em caso de sucesso
+            contactForm.reset();
           } else {
             formMessage.textContent = "Erro: " + data.message;
             formMessage.className = "form-message error";
           }
         })
         .catch((error) => {
-          // Trata erros de rede ou de conversão do JSON
           console.error("Erro na requisição:", error);
           formMessage.textContent = "Ocorreu um erro de rede. Tente novamente.";
           formMessage.className = "form-message error";
         })
         .finally(() => {
-          // Reativa o botão de submit, independentemente do resultado
           submitButton.disabled = false;
           submitButton.innerHTML =
             'Enviar Mensagem <i class="fas fa-paper-plane"></i>';
